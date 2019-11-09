@@ -7,6 +7,8 @@ import {BeeHives} from '../../../models/beeHives';
 import {Zones} from '../../../models/zones';
 import {Point} from '../../../models/point';
 //const declaration
+
+import {BeemapService} from '../../../services/beemap.service';
 declare const google: any;
 
 @Component({
@@ -16,14 +18,15 @@ declare const google: any;
 })
 export class BeeMapComponent implements OnInit {
   location:Location;
-  //beeMarker: BeeMarker;
+  beeHives: BeeHives[];
   beeIcon:Object;
   zones:Zones[];
   checked:boolean;
   map:any;
   zoneColor:string;
-
-  constructor() {
+  drawingManager:any;
+  
+  constructor(private beeMapService:BeemapService) {
     this.beeIcon = {
       url: '../../../../assets/icons/bee.svg',
       scaledSize: {
@@ -35,11 +38,10 @@ export class BeeMapComponent implements OnInit {
   this.checked = false;
   this.map = null;
   this.zoneColor = "red";
-  
+  this.beeHives = [];
   }
 
   ngOnInit() {
-    //this.zones.push(upperLeftPoint:{lat:35,lng:35},bottomRightPoint:{lat:30,lng:40},dateTimeEnd:null,dateTimeStart:null});
     this.zones.push({upperLeftPoint:{lat:31,lng:31},bottomRightPoint:{lat:29,lng:32},dateTimeEnd:null,dateTimeStart:null})
     this.location = {
         latitude: 30,
@@ -59,9 +61,15 @@ export class BeeMapComponent implements OnInit {
             }
         ]
     }
+    
 }
 onMapReady(map) {
   this.map = map;
+  this.populateMap();
+  this.drawingManager = new google.maps.drawing.DrawingManager();
+}
+populateMap(){
+  //udaris get pozive
 }
 onChange(value: MatSlideToggleChange) {
   //const { checked } = value;
@@ -76,12 +84,12 @@ addMarker(lat: number, lng: number) {
   //opali post request kada se ovo zavrsi 
   //if form.pcele === true onda ovo
   
-  
-  
+  // console.log(this.drawingManager);
+  // if(this.drawingManager.getMap()){
+  //   this.drawingManager.setMap(null);
+  //   console.log(this.drawingManager);
+  // }
   if(!this.checked){
-    // const options ={drawingControl:false}
-    // const drawingManager = new google.maps.drawing.DrawingManager(options);
-    // drawingManager.setMap(options);
     this.location.markers.push({
       coordinate:{lat:lat,lng:lng},
       name:"",
@@ -89,31 +97,30 @@ addMarker(lat: number, lng: number) {
   })
   //drawingManager.setMap(options);
   }
-  if(this.checked){
-    console.log(this.map);
-    const options = {
-      drawingControl: true,
-      drawingControlOptions : {
-        position : google.maps.ControlPosition.TOP_CENTER,
-        drawingModes : [ google.maps.drawing.OverlayType.RECTANGLE ]
-    },
-    rectangleOptions : {
-        // strokeColor : this.zoneColor,
-        // strokeWeight : 3.5,
-        fillColor : this.zoneColor,
-        fillOpacity : 0.5,
-        editable: true,
-        draggable: true
-    }, 
-      drawingMode: google.maps.drawing.OverlayType.RECTANGLE
-    };
+  // if(this.checked){
+  //   console.log(this.map);
+  //   const options = {
+  //     drawingControl: true,
+  //     drawingControlOptions : {
+  //       position : google.maps.ControlPosition.TOP_CENTER,
+  //       drawingModes : [ google.maps.drawing.OverlayType.RECTANGLE ]
+  //   },
+  //   rectangleOptions : {
+  //       // strokeColor : this.zoneColor,
+  //       // strokeWeight : 3.5,
+  //       fillColor : this.zoneColor,
+  //       fillOpacity : 0.5,
+  //       editable: true,
+  //       draggable: true
+  //   }, 
+  //     drawingMode: google.maps.drawing.OverlayType.RECTANGLE
+  //   };
 
-    const drawingManager = new google.maps.drawing.DrawingManager(options);
-    drawingManager.setMap(this.map);
-    
-
-  }
-  else return;
+  //   this.drawingManager = new google.maps.drawing.DrawingManager(options);
+  //   this.drawingManager.setMap(this.map);
+  // }
+  
+  // else return;
   
   //else postavlja se parcela
   //parcela se postavlja na drag
