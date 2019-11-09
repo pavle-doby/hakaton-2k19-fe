@@ -10,15 +10,16 @@ import {
 } from "../actions";
 import { UserAuth } from "src/app/models/userAuth";
 import { User } from "src/app/models/user";
+import { MyToken } from "src/app/models/token";
 
 const initState = null;
 
-export default function(state: User = initState, action: Action) {
+export default function(state: MyToken = initState, action: Action) {
   switch (action.type) {
     case USER_LOG_IN_SUCCESS: {
-      const user = (action as UserLogInSuccess).user;
+      const token = (action as UserLogInSuccess).token;
 
-      return { ...(state = user) };
+      return { ...(state = token) };
     }
     default: {
       return state;
