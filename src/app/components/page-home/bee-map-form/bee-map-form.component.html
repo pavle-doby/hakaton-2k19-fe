@@ -1,0 +1,67 @@
+<mat-tab-group class="width-100">
+  <mat-tab label="EDIT" class="width-100">
+    <div
+      class="width-100"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+      fxLayoutGap="10px"
+    >
+      <div class="width-100" fxLayout="column" fxLayoutAlign="start start">
+        Plot <small>pesticide-sprayed</small>
+        <mat-form-field class="width-100">
+          <input matInput placeholder="Plot id" [(ngModel)]="plot_id" />
+        </mat-form-field>
+        <mat-form-field class="width-100">
+          <mat-label>Pesticides</mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let pesticide of pesticides"
+              [value]="pesticide"
+              (click)="selectPesticide(pesticide)"
+            >
+              {{ pesticide }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="submitForPlot()">
+          SUBMIT
+        </button>
+      </div>
+      <div
+        class="width-100"
+        fxLayout="column"
+        fxLayoutAlign="start start"
+        fxLayoutGap="10px"
+      >
+        Bee hive
+        <br />
+        <br />
+        <mat-slide-toggle
+          class="example-margin"
+          [color]="color"
+          [checked]="addBeeHiveBool"
+          (change)="addBeeHive()"
+        >
+          Add by click on map
+        </mat-slide-toggle>
+        <mat-slide-toggle
+          class="example-margin"
+          [color]="color"
+          [checked]="deleteBeeHiveBool"
+          (change)="deleteBeeHive()"
+        >
+          Delete by click on bee hive
+        </mat-slide-toggle>
+        <mat-slide-toggle
+          class="example-margin"
+          [color]="color"
+          [checked]="updateBeeHiveBool"
+          (change)="updateBeeHive()"
+        >
+          Update bee hive by dragging it
+        </mat-slide-toggle>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="FILTER"> Content 2 </mat-tab>
+</mat-tab-group>
