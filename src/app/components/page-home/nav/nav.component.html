@@ -1,4 +1,15 @@
-<p>nav works!</p>
-<div class="width-100">
-  nesto
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+  <label>Logo</label>
+  <div
+    *ngIf="!isLoggedIn"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px"
+  >
+    <app-login></app-login>
+    <app-signin></app-signin>
+  </div>
+  <div *ngIf="isLoggedIn">
+    BeeResponsible
+  </div>
 </div>
