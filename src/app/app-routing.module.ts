@@ -6,9 +6,11 @@ import { MatDashboardComponent } from "./components/material-schematics/mat-dash
 import { MatDragDropComponent } from "./components/material-schematics/mat-drag-drop/mat-drag-drop.component";
 import { MatTableComponent } from "./components/material-schematics/mat-table/mat-table.component";
 import { MatTreeComponent } from "./components/material-schematics/mat-tree/mat-tree.component";
+import { PageLoginComponent } from "./components/page-login/page-login.component";
 
 const routes: Routes = [
-  { path: "", component: PageHomeComponent },
+  { path: "", component: PageLoginComponent },
+  { path: "login", component: PageLoginComponent },
   { path: "home", component: PageHomeComponent },
   { path: "mat-address-form", component: MatAddressFormComponent },
   { path: "mat-dashbaord", component: MatDashboardComponent },

@@ -15,7 +15,12 @@
   </div>
 </div>
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
+  <button
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="data"
+    cdkFocusInitial
+  >
     LOG IN
   </button>
 </div>

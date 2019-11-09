@@ -40,6 +40,9 @@ import { rootReducer } from "./store/store";
 
 import { AgmCoreModule, MapsAPILoader } from "@agm/core";
 import { BeeMapComponent } from './components/page-home/bee-map/bee-map.component';
+import { NavComponent } from './components/page-home/nav/nav.component';
+import { LoginComponent } from './components/page-login/login/login.component';
+import { SigninComponent } from './components/page-login/signin/signin.component';
 
 const MaterialComponents = [
   MatToolbarModule,
@@ -73,7 +76,10 @@ const MaterialComponents = [
     MatDragDropComponent,
     DialogLogInComponent,
     DialogSignInComponent,
-    BeeMapComponent
+    BeeMapComponent,
+    NavComponent,
+    LoginComponent,
+    SigninComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
