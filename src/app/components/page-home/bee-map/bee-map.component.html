@@ -2,7 +2,7 @@
 <agm-map [latitude]="location.latitude" [longitude]="location.longitude"
 (mapReady)="onMapReady($event)" 
 (mapClick)="addMarker($event.coords.lat, $event.coords.lng)">
-  <div *ngFor="let bee of location.markers">
+  <div *ngFor="let bee of beeHives">
       <agm-marker
       [iconUrl]="beeIcon" [latitude]="bee.coordinate.lat" [longitude]="bee.coordinate.lng"></agm-marker>
   </div>
@@ -26,3 +26,4 @@
           >
         Slide me!
       </mat-slide-toggle>
+

@@ -42,38 +42,41 @@ export class BeeMapComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.zones.push({upperLeftPoint:{lat:31,lng:31},bottomRightPoint:{lat:29,lng:32},dateTimeEnd:null,dateTimeStart:null})
+    //this.zones.push({upperLeftPoint:{lat:31,lng:31},bottomRightPoint:{lat:29,lng:32},dateTimeEnd:null,dateTimeStart:null})
     this.location = {
         latitude: 30,
         longitude: 30,
         mapType: "satelite",
         zoom: 5,
-        markers: [
-            {
-                coordinate:{lat:-28.68352,lng:-147.20785},
-                name:"lmao",
-                count:1
-            },
-            {
-              coordinate:{lat:30,lng:30},
-              name:"kosnica random",
-              count:1
-            }
-        ]
+        markers: this.beeHives
     }
     
 }
 onMapReady(map) {
   this.map = map;
-  this.populateMap();
+  //this.populateMap();
   this.drawingManager = new google.maps.drawing.DrawingManager();
 }
-populateMap(){
-  //udaris get pozive
+getAllBeeHives(){
+  this.beeMapService.getAllBeeHives().subscribe(res=>{
+    console.log(res);
+    res.forEach(bee=>{
+      this.beeHives.push({coordinate:{lat: bee.latitude, lng:bee.longitude},name: bee.name,count:bee.hive_count})
+    })
+    console.log(this.beeHives);
+  })
+}
+
+addBeeHive(){
+  let beeHive = {};
+  const last = this.beeHives.length-1;
+  beeHive = {point:`SRID=4326;POINT (${this.beeHives[last].coordinate.lat} ${this.beeHives[last].coordinate.lng})`,hive_count:this.beeHives[last].count,name:"omegalul"};
+  this.beeMapService.addBeeHive(beeHive).subscribe(res=>console.log(res));
 }
 onChange(value: MatSlideToggleChange) {
   //const { checked } = value;
   this.checked = value.checked;
+  this.getAllBeeHives();
   
   console.log(this.checked);
 }
@@ -95,7 +98,14 @@ addMarker(lat: number, lng: number) {
       name:"",
       count:1
   })
+  this.beeHives.push({
+    coordinate:{lat:lat,lng:lng},
+    name:"",
+    count:1
+})
   //drawingManager.setMap(options);
+  console.log(this.beeHives);
+  this.addBeeHive();
   }
   // if(this.checked){
   //   console.log(this.map);
