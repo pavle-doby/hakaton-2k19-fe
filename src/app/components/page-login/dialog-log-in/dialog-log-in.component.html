@@ -1,0 +1,21 @@
+<h1 mat-dialog-title fxLayout="column" fxLayoutAlign="center center">Log in</h1>
+<div mat-dialog-content>
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <mat-form-field>
+      <input matInput placeholder="USERNAME" [(ngModel)]="data.username" />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        placeholder="PASSWORD"
+        [(ngModel)]="data.password"
+      />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
+    LOG IN
+  </button>
+</div>

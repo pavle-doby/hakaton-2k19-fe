@@ -1,56 +1,99 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
+import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { AppRoutingModule } from "./app-routing.module";
-import { NavMenuComponent } from "./components/nav-menu/nav-menu.component";
 import { LayoutModule } from "@angular/cdk/layout";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
-import { AdressFormComponent } from "./components/adress-form/adress-form.component";
+import { PageHomeComponent } from "./components/page-home/page-home.component";
+import { PageLoginComponent } from "./components/page-login/page-login.component";
+import { ShellComponent } from "./components/shell/shell.component";
 import { MatInputModule } from "@angular/material/input";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 import { MatSelectModule } from "@angular/material/select";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatCardModule } from "@angular/material/card";
-import { ReactiveFormsModule } from "@angular/forms";
-import { TableComponent } from './components/table/table.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatMenuModule } from '@angular/material/menu';
-import { PageHomeComponent } from './components/page-home/page-home.component';
-import { PageLoginComponent } from './components/page-login/page-login.component';
+import { MatTableModule } from "@angular/material/table";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
+import { MatAddressFormComponent } from "./components/material-schematics/mat-address-form/mat-address-form.component";
+import { MatTableComponent } from "./components/material-schematics/mat-table/mat-table.component";
+import { MatDashboardComponent } from "./components/material-schematics/mat-dashboard/mat-dashboard.component";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatTreeComponent } from "./components/material-schematics/mat-tree/mat-tree.component";
+import { MatTreeModule } from "@angular/material/tree";
+import { MatDragDropComponent } from "./components/material-schematics/mat-drag-drop/mat-drag-drop.component";
+import { DragDropModule } from "@angular/cdk/drag-drop";
+import { MatDialogModule } from "@angular/material/dialog";
+import { DialogLogInComponent } from "./components/page-login/dialog-log-in/dialog-log-in.component";
+import { DialogSignInComponent } from "./components/page-login/dialog-sign-in/dialog-sign-in.component";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { StoreModule } from "@ngrx/store";
+import { rootReducer } from "./store/store";
+
+import { AgmCoreModule, MapsAPILoader } from "@agm/core";
+import { BeeMapComponent } from './components/page-home/bee-map/bee-map.component';
+
+const MaterialComponents = [
+  MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
+  MatInputModule,
+  MatSelectModule,
+  MatRadioModule,
+  MatCardModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatGridListModule,
+  MatMenuModule,
+  MatTreeModule,
+  MatDialogModule
+];
 
 @NgModule({
-  declarations: [AppComponent, NavMenuComponent, AdressFormComponent, TableComponent, DashboardComponent, PageHomeComponent, PageLoginComponent],
+  declarations: [
+    AppComponent,
+    PageHomeComponent,
+    PageLoginComponent,
+    ShellComponent,
+    MatAddressFormComponent,
+    MatTableComponent,
+    MatDashboardComponent,
+    MatTreeComponent,
+    MatDragDropComponent,
+    DialogLogInComponent,
+    DialogSignInComponent,
+    BeeMapComponent
+  ],
   imports: [
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyDNOJOHPAaq0SyPL6aqSkPbk0VWPSti_L0",
+      libraries: ["places"]
+    }),
+    StoreModule.forRoot(rootReducer),
+    MaterialComponents,
+    FlexLayoutModule,
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatInputModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatCardModule,
+    FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatGridListModule,
-    MatMenuModule
+    DragDropModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogLogInComponent, DialogSignInComponent]
 })
 export class AppModule {}

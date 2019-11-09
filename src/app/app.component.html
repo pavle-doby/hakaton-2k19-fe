@@ -1,3 +1,4 @@
-<app-nav-menu>
+<app-shell *ngIf="isLoggedIn">
   <router-outlet></router-outlet>
-</app-nav-menu>
+</app-shell>
+<app-page-login *ngIf="!isLoggedIn"></app-page-login>
