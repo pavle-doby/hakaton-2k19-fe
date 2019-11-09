@@ -14,7 +14,7 @@ export class AppComponent {
 
   public $user: Observable<UserRegister>;
 
-  public isLoggedIn: boolean = true;
+  public isLoggedIn: boolean = false;
 
   constructor(private store$: Store<State>) {
     this.$user = this.store$.select(state => state.user);
@@ -22,8 +22,8 @@ export class AppComponent {
   }
 
   public ngOnInit(): void {
-    // this.$user.subscribe(user => {
-    //   this.isLoggedIn = !!user;
-    // });
+    this.$user.subscribe(user => {
+      this.isLoggedIn = !!user;
+    });
   }
 }
