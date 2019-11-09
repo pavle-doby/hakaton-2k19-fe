@@ -39,13 +39,18 @@ import { StoreModule } from "@ngrx/store";
 import { rootReducer } from "./store/store";
 
 import { AgmCoreModule, MapsAPILoader } from "@agm/core";
-import { BeeMapComponent } from './components/page-home/bee-map/bee-map.component';
-import { NavComponent } from './components/page-home/nav/nav.component';
-import { LoginComponent } from './components/page-login/login/login.component';
-import { SigninComponent } from './components/page-login/signin/signin.component';
+import { BeeMapComponent } from "./components/page-home/bee-map/bee-map.component";
+import { NavComponent } from "./components/page-home/nav/nav.component";
+import { LoginComponent } from "./components/page-login/login/login.component";
+import { SigninComponent } from "./components/page-login/signin/signin.component";
+import { BeeMapFormComponent } from "./components/page-home/bee-map-form/bee-map-form.component";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 const MaterialComponents = [
+  MatSlideToggleModule,
   MatToolbarModule,
+  MatTabsModule,
   MatButtonModule,
   MatSidenavModule,
   MatIconModule,
@@ -79,7 +84,8 @@ const MaterialComponents = [
     BeeMapComponent,
     NavComponent,
     LoginComponent,
-    SigninComponent
+    SigninComponent,
+    BeeMapFormComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
