@@ -1,1 +1,45 @@
-<p>dialog-sign-in works!</p>
+<h1 mat-dialog-title fxLayout="column" fxLayoutAlign="center center">
+  Sign up
+</h1>
+<div mat-dialog-content>
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <mat-form-field>
+      <input matInput placeholder="USERNAME" [(ngModel)]="data.username" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="FIRST NAME" [(ngModel)]="data.first_name" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="LAST NAME" [(ngModel)]="data.last_name" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="E-MAIL" [(ngModel)]="data.email" />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="PHONE NUMBER"
+        [(ngModel)]="data.phone_number"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="password"
+        placeholder="PASSWORD"
+        [(ngModel)]="data.password"
+      />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
+  <button
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="data"
+    cdkFocusInitial
+  >
+    Sign Up
+  </button>
+</div>
