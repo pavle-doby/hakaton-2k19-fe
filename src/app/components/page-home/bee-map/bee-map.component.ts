@@ -62,8 +62,8 @@ export class BeeMapComponent implements OnInit {
   ngOnInit() {
     //this.zones.push({upperLeftPoint:{lat:31,lng:31},bottomRightPoint:{lat:29,lng:32},dateTimeEnd:null,dateTimeStart:null})
     this.location = {
-        latitude: 30,
-        longitude: 30,
+        latitude: 43,
+        longitude: 21,
         mapType: "satelite",
         zoom: 7,
         markers: this.beeHives

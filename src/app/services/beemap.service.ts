@@ -38,8 +38,8 @@ export class BeemapService {
     return this.http.post<any>(url,beeHive,httpOptions);
   }
   public updateBeeHive(beeHive:any):Observable<any[]>{
-    const url = `${baseURL}beehives/${beeHive.pk}`;
-    return this.http.patch<any[]>(url,httpOptions);
+    const url = `${baseURL}beehives/${beeHive.pk}/`;
+    return this.http.put<any[]>(url,httpOptions);
   }
   public deleteBeeHive(beeHive:any):Observable<any[]>{
     const url = `${baseURL}beehives/${beeHive.pk}`;

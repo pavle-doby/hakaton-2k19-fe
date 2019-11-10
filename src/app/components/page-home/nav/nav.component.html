@@ -8,7 +8,7 @@
     <img
       src="./../../../../assets/icons/bee.svg"
       alt="bee"
-      style="width: 36xp; height: 36px;"
+      style="width: 36xp; height: 36px; margin-left:50px;"
     />
   </label>
   <div
@@ -16,11 +16,13 @@
     fxLayout="row"
     fxLayoutAlign="center center"
     fxLayoutGap="10px"
+    style="margin-right:40px;"
   >
     <app-login></app-login>
-    <app-signin></app-signin>
+    <app-signin style="margin-right:50px;"></app-signin>
   </div>
-  <div *ngIf="isLoggedIn">
+  <div *ngIf="isLoggedIn"
+  style="margin-right:40px;">
     BeeResponsible
   </div>
 </div>

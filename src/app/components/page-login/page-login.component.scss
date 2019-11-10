@@ -1,5 +1,10 @@
+
 .page-login--container {
-  //   background-image: url("./../../../assets/images/bckg1.jpg");
+  background-image: linear-gradient(to right, rgba(0, 0, 0, .85), rgba(0, 0, 0, .6)), url("./../../../assets/images/bcg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  h1{
+    color:white;
+    font-size:50px;
+  }
 }

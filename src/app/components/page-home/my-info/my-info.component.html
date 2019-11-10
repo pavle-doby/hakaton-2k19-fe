@@ -1,4 +1,4 @@
-<mat-tab-group *ngIf="true" class="width-100">
+<mat-tab-group *ngIf="isLoggedIn" class="width-100">
   <mat-tab label="NOTIFICATIONS" class="width-100">
     <div class="width-100">
       <mat-card
@@ -22,7 +22,7 @@
       </mat-card>
     </div>
   </mat-tab>
-  <mat-tab label="MY PROPERTY" class="card-body width-100">
+  <mat-tab color="accent" label="MY PROPERTY" class="card-body width-100">
     <div class="width-100">
       <mat-card class="width-80">
         Plots
@@ -76,6 +76,4 @@
     </div>
   </mat-tab>
 </mat-tab-group>
-<div *ngIf="!isLoggedIn">
-  <h3>Log in to see your info :D</h3>
-</div>
+
