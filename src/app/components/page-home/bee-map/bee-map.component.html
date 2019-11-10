@@ -1,13 +1,13 @@
 <p>{{ title }}</p>
-<agm-map [latitude]="location.latitude" [longitude]="location.longitude"
+<agm-map [latitude]="location.latitude" [longitude]="location.longitude" [zoom]="location.zoom"
 (mapReady)="onMapReady($event)" 
-(mapClick)="addMarker($event.coords.lat, $event.coords.lng)">
+(mapClick)="beehivesActionsStatus.addBool ? addMarker($event.coords.lat, $event.coords.lng):null">
   <div *ngFor="let bee of beeHives">
       <agm-marker
       [iconUrl]="beeIcon" [latitude]="bee.coordinate.lat" [longitude]="bee.coordinate.lng"
-      [markerDraggable]="updateBeeHiveLocation"
+      [markerDraggable]="beehivesActionsStatus.updateBool"
       (dragEnd)="markerDragEnd($event,bee)"
-      (markerClick)="markerClicked(bee)"
+      (markerClick)="beehivesActionsStatus.deleteBool ? markerClicked(bee):null"
       ></agm-marker>
   </div>
   <div *ngFor="let dz of zones">

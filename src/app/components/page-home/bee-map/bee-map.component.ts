@@ -9,6 +9,10 @@ import {Point} from '../../../models/point';
 //const declaration
 
 import {BeemapService} from '../../../services/beemap.service';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/store/store';
+import { Observable } from 'rxjs';
+import { BeeHiveActionsState } from 'src/app/models/beeHiveActionsState';
 declare const google: any;
 
 @Component({
@@ -27,8 +31,15 @@ export class BeeMapComponent implements OnInit {
   zoneColor:string;
   drawingManager:any;
   updateBeeHiveLocation:boolean;
-  
-  constructor(private beeMapService:BeemapService) {
+
+  $beehivesActionsStatus: Observable<BeeHiveActionsState>;
+  $myPlot:Observable<any>;
+  $myBeehive: Observable<any>;
+  myPlot:any;
+  myBeehive:any;
+  beehivesActionsStatus: BeeHiveActionsState;
+
+  constructor(private beeMapService:BeemapService, private $store: Store<State>) {
     this.beeIcon = {
       url: '../../../../assets/icons/bee.svg',
       scaledSize: {
@@ -36,6 +47,9 @@ export class BeeMapComponent implements OnInit {
           height: 20
       }
   }
+  this.$beehivesActionsStatus = this.$store.select(s => s.beeHiveActionState);
+  this.$myBeehive = this.$store.select(s => s.selecetedBeehives);
+  this.$myPlot = this.$store.select(s => s.selectedPlot);
   this.zones = [];
   this.checked = false;
   this.map = null;
@@ -51,9 +65,37 @@ export class BeeMapComponent implements OnInit {
         latitude: 30,
         longitude: 30,
         mapType: "satelite",
-        zoom: 5,
+        zoom: 7,
         markers: this.beeHives
     }
+    this.$beehivesActionsStatus.subscribe(bas => {
+      this.beehivesActionsStatus = bas;
+      console.log(this.beehivesActionsStatus);
+    })
+    this.$myBeehive.subscribe(bas => {
+      this.myBeehive = bas;
+      console.log(this.myBeehive);
+      if(bas!==null && bas !==undefined){
+        {
+          this.location.latitude = this.myBeehive.latitude;
+          this.location.longitude = this.myBeehive.longitude;
+          this.location.zoom = 10;
+          //this.beeMapService.getAllBeeHives(this.map.getBounds());
+        }
+        
+      }
+      
+    })
+    this.$myPlot.subscribe(bas => {
+      this.myPlot = bas;
+      if(bas!==null && bas !==undefined){
+        this.location.latitude = this.myPlot.upper_left_latitude;
+          this.location.longitude = this.myPlot.upper_left_longitude;
+          this.location.zoom = 10;    
+          console.log("upao");
+      }
+      
+    })
     
 }
 onMapReady(map) {
@@ -125,14 +167,10 @@ markerClicked(bee:any){
   })
 }
 addMarker(lat: number, lng: number) {
-  if(!this.checked){
-
   console.log(this.beeHives);
-  //this.beeHives.push({pk:null,coordinate:{lat:lat,lng:lng},name:"",count:1});
   let latt = lat;
   let lngg = lng;
   this.addBeeHive(latt,lngg);
-  }
 }
 
 }

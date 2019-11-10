@@ -28,14 +28,8 @@ export class BeemapService {
   }
 
   public addBeeHive(beeHive:any): Observable<number>{
-    // this.hive.coordinate={lat:37,lng:37};
-    // this.hive.count = 1;
-    // this.hive.name= "omegalul";
     console.log(this.hive);
     const url = `${baseURL}beehives/`;
-    //return this.http.post<any>(url,{point:"SRID=4326;POINT (21.8875343 43.3358099)",hive_count:1,name:"omegalul"},httpOptions);
-    //beeHive
-    console.log(beeHive);
     return this.http.post<any>(url,beeHive,httpOptions);
   }
   public updateBeeHive(beeHive:any):Observable<any[]>{
