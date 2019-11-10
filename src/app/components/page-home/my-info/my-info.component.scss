@@ -3,7 +3,7 @@
 }
 
 .my-info--danger {
-  background-color: red;
+  background-color: #e74c3c;
 }
 .my-info--warning {
   background-color: orange;
@@ -14,6 +14,8 @@
 
 mat-card {
   margin: 10px;
+  max-height:700px;
+  overflow-y:scroll;
 }
 .width-80 {
   width: 80%;
