@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { UserRegister } from "../models/userRegister";
 import { baseURL, httpOptions } from "src/assets/config";
 import { MyToken } from "../models/token";
-import { User } from '../models/user';
+import { User } from "../models/user";
 
 @Injectable({
   providedIn: "root"
@@ -17,7 +17,7 @@ export class UserService {
     return this.http.post(url, userRegister, httpOptions);
   }
   public getToken(user: User): Observable<MyToken> {
-    const url = `${baseURL}user/api/token/`;
+    const url = `${baseURL}jwt/token/`;
     return this.http.post<MyToken>(url, user, httpOptions);
   }
   public getAllUsers(): Observable<any[]> {

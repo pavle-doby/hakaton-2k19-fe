@@ -1,0 +1,18 @@
+<br />
+<mat-card
+  class="bee-map-legend width-100"
+  fxLayout="column"
+  fxLayoutAlign="space-evenly start"
+  fxLayoutGap="5px"
+>
+  <div
+    class="bee-map-legend--row"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    fxLayoutGap="5px"
+    *ngFor="let legend of legendArray"
+  >
+    <div class="bee-map-legend--color {{ legend.classColor }}"></div>
+    <small class="bee-map-legend--info">{{ legend.info }}</small>
+  </div>
+</mat-card>

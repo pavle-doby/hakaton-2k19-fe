@@ -46,6 +46,9 @@ import { SigninComponent } from "./components/page-login/signin/signin.component
 import { BeeMapFormComponent } from "./components/page-home/bee-map-form/bee-map-form.component";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MyInfoComponent } from "./components/page-home/my-info/my-info.component";
+import { BeeMapLegendComponent } from './components/page-home/bee-map-legend/bee-map-legend.component';
+import { FooterComponent } from './components/page-home/footer/footer.component';
 
 const MaterialComponents = [
   MatSlideToggleModule,
@@ -86,7 +89,10 @@ const MaterialComponents = [
     NavComponent,
     LoginComponent,
     SigninComponent,
-    BeeMapFormComponent
+    BeeMapFormComponent,
+    MyInfoComponent,
+    BeeMapLegendComponent,
+    FooterComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
