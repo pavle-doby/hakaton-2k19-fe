@@ -16,9 +16,14 @@ export class BeemapService {
     this.hive = null;
    }
 
-   public getAllBeeHives(): Observable<any[]> {
-    const url = `${baseURL}beehives/user/`;
-    return this.http.get<any[]>(url, httpOptions);
+  //  public getAllBeeHives(): Observable<any[]> {
+  //   const url = `${baseURL}beehives/user/`;
+  //   return this.http.get<any[]>(url, httpOptions);
+  // }
+  public getAllBeeHives(regionCoordinates:any): Observable<any[]>{
+    const querryParams = `?ul_lat=${regionCoordinates.na.j}&ul_lon=${regionCoordinates.na.l}&br_lat=${regionCoordinates.ga.j}&br_lon=${regionCoordinates.ga.l}`;
+    const url = `${baseURL}beehives${querryParams}`;
+    return this.http.get<any[]>(url,httpOptions);
   }
 
   public addBeeHive(beeHive:any): Observable<any[]>{
@@ -30,5 +35,11 @@ export class BeemapService {
     //return this.http.post<any>(url,{point:"SRID=4326;POINT (21.8875343 43.3358099)",hive_count:1,name:"omegalul"},httpOptions);
     //beeHive
     return this.http.post<any>(url,beeHive,httpOptions);
+  }
+
+  public getAllDangerZones(regionCoordinates:any){
+    const querryParams = `?ul_lat=${regionCoordinates.na.j}&ul_lon=${regionCoordinates.na.l}&br_lat=${regionCoordinates.ga.j}&br_lon=${regionCoordinates.ga.l}`
+    const url = `${baseURL}plots/get_plots${querryParams}`;
+    return this.http.get<any[]>(url,httpOptions);
   }
 }

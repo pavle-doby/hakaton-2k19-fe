@@ -23,6 +23,7 @@ export class BeeMapComponent implements OnInit {
   zones:Zones[];
   checked:boolean;
   map:any;
+  mapBounds:any;
   zoneColor:string;
   drawingManager:any;
   
@@ -39,6 +40,7 @@ export class BeeMapComponent implements OnInit {
   this.map = null;
   this.zoneColor = "red";
   this.beeHives = [];
+  this.mapBounds = null;
   }
 
   ngOnInit() {
@@ -54,11 +56,21 @@ export class BeeMapComponent implements OnInit {
 }
 onMapReady(map) {
   this.map = map;
-  //this.populateMap();
+  let that = this;
+  console.log(this.map);
+  google.maps.event.addListener(this.map, 'bounds_changed', function() {
+    console.log(map.getBounds());
+    that.mapBounds = map.getBounds();
+    that.getAllBeeHives(map.getBounds());
+    that.beeMapService.getAllDangerZones(map.getBounds()).subscribe(res=>{
+      console.log(res);
+    });
+    
+ });
   this.drawingManager = new google.maps.drawing.DrawingManager();
 }
-getAllBeeHives(){
-  this.beeMapService.getAllBeeHives().subscribe(res=>{
+getAllBeeHives(box:any){
+  this.beeMapService.getAllBeeHives(box).subscribe(res=>{
     console.log(res);
     res.forEach(bee=>{
       this.beeHives.push({coordinate:{lat: bee.latitude, lng:bee.longitude},name: bee.name,count:bee.hive_count})
@@ -76,7 +88,7 @@ addBeeHive(){
 onChange(value: MatSlideToggleChange) {
   //const { checked } = value;
   this.checked = value.checked;
-  this.getAllBeeHives();
+  //this.getAllBeeHives();
   
   console.log(this.checked);
 }
