@@ -21,7 +21,7 @@ export class BeemapService {
   //   return this.http.get<any[]>(url, httpOptions);
   // }
   public getAllBeeHives(regionCoordinates:any): Observable<any[]>{
-    const querryParams = `?ul_lat=${regionCoordinates.na.j}&ul_lon=${regionCoordinates.na.l}&br_lat=${regionCoordinates.ga.j}&br_lon=${regionCoordinates.ga.l}`;
+    const querryParams = `?ul_lat=${regionCoordinates.na.l}&ul_lon=${regionCoordinates.ga.j}&br_lat=${regionCoordinates.na.j}&br_lon=${regionCoordinates.ga.l}`;
     const url = `${baseURL}beehives${querryParams}`;
     return this.http.get<any[]>(url,httpOptions);
   }
@@ -36,9 +36,13 @@ export class BeemapService {
     //beeHive
     return this.http.post<any>(url,beeHive,httpOptions);
   }
+  public updateBeeHive(beeHive:any):Observable<any[]>{
+    const url = `${baseURL}beehives/${beeHive.pk}`;
+    return this.http.get<any[]>(url,httpOptions);
+  }
 
   public getAllDangerZones(regionCoordinates:any){
-    const querryParams = `?ul_lat=${regionCoordinates.na.j}&ul_lon=${regionCoordinates.na.l}&br_lat=${regionCoordinates.ga.j}&br_lon=${regionCoordinates.ga.l}`
+    const querryParams = `?ul_lat=${regionCoordinates.na.l}&ul_lon=${regionCoordinates.ga.j}&br_lat=${regionCoordinates.na.j}&br_lon=${regionCoordinates.ga.l}`;
     const url = `${baseURL}plots/get_plots${querryParams}`;
     return this.http.get<any[]>(url,httpOptions);
   }

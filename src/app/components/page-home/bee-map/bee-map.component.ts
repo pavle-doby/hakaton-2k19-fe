@@ -26,6 +26,7 @@ export class BeeMapComponent implements OnInit {
   mapBounds:any;
   zoneColor:string;
   drawingManager:any;
+  updateBeeHiveLocation:boolean;
   
   constructor(private beeMapService:BeemapService) {
     this.beeIcon = {
@@ -41,6 +42,7 @@ export class BeeMapComponent implements OnInit {
   this.zoneColor = "red";
   this.beeHives = [];
   this.mapBounds = null;
+  this.updateBeeHiveLocation = false;
   }
 
   ngOnInit() {
@@ -58,12 +60,12 @@ onMapReady(map) {
   this.map = map;
   let that = this;
   console.log(this.map);
-  google.maps.event.addListener(this.map, 'bounds_changed', function() {
+  google.maps.event.addListener(this.map, 'dragend', function() {
     console.log(map.getBounds());
     that.mapBounds = map.getBounds();
     that.getAllBeeHives(map.getBounds());
     that.beeMapService.getAllDangerZones(map.getBounds()).subscribe(res=>{
-      console.log(res);
+      //console.log(res);
     });
     
  });
@@ -71,9 +73,12 @@ onMapReady(map) {
 }
 getAllBeeHives(box:any){
   this.beeMapService.getAllBeeHives(box).subscribe(res=>{
-    console.log(res);
-    res.forEach(bee=>{
-      this.beeHives.push({coordinate:{lat: bee.latitude, lng:bee.longitude},name: bee.name,count:bee.hive_count})
+    //console.log(res);
+    let temp = [...res];
+    this.beeHives = [];
+    //this.beeHives = [...res];
+    temp.forEach(bee=>{
+      this.beeHives.push({pk:bee.pk,coordinate:{lat: bee.latitude, lng:bee.longitude},name: bee.name,count:bee.hive_count})
     })
     console.log(this.beeHives);
   })
@@ -84,6 +89,17 @@ addBeeHive(){
   const last = this.beeHives.length-1;
   beeHive = {point:`SRID=4326;POINT (${this.beeHives[last].coordinate.lat} ${this.beeHives[last].coordinate.lng})`,hive_count:this.beeHives[last].count,name:"omegalul"};
   this.beeMapService.addBeeHive(beeHive).subscribe(res=>console.log(res));
+}
+markerDragEnd($event: any,bee:BeeHives){
+    let beeToUpdate;
+    this.beeHives[this.beeHives.findIndex(el=>el.pk === bee.pk)].coordinate.lat = $event.coords.lat;
+    this.beeHives[this.beeHives.findIndex(el=>el.pk === bee.pk)].coordinate.lng = $event.coords.lng;
+    this.beeMapService.updateBeeHive(this.beeHives[this.beeHives.findIndex(el=>el.pk === bee.pk)]).subscribe(res=>{
+      console.log(res);
+    })
+}
+updateBee(){
+
 }
 onChange(value: MatSlideToggleChange) {
   //const { checked } = value;
@@ -106,11 +122,13 @@ addMarker(lat: number, lng: number) {
   // }
   if(!this.checked){
     this.location.markers.push({
+      pk:111,
       coordinate:{lat:lat,lng:lng},
       name:"",
       count:1
   })
   this.beeHives.push({
+    pk:222,
     coordinate:{lat:lat,lng:lng},
     name:"",
     count:1
