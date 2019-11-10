@@ -26,6 +26,11 @@ export class BeemapService {
     const url = `${baseURL}beehives${querryParams}`;
     return this.http.get<any[]>(url,httpOptions).pipe(share());
   }
+  
+  public getAllBeeHivesNoRegion(): Observable<any[]>{
+    const url = `${baseURL}beehives`;
+    return this.http.get<any[]>(url,httpOptions);
+  }
 
   public addBeeHive(beeHive:any): Observable<number>{
     console.log(this.hive);
