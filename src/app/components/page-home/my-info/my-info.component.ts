@@ -2,11 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MyInfoService } from "src/app/services/my-info.service";
 import { not } from "@angular/compiler/src/output/output_ast";
 
-enum StatusColor {
-  Healthy,
-  Warning,
-  Danger
-}
+
 const StatusColorClasses = [
   "my-info--healthy",
   "my-info--warning",

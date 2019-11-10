@@ -1,6 +1,9 @@
 <app-nav></app-nav>
 <div fxLayout="row" fxLayoutAlign="space-evenly start">
   <app-bee-map-form></app-bee-map-form>
-  <app-bee-map></app-bee-map>
+  <div fxLayout="column" fxLayoutAlign="space-evenly start">
+    <app-bee-map-legend class=" width-100"></app-bee-map-legend>
+    <app-bee-map></app-bee-map>
+  </div>
   <app-my-info></app-my-info>
 </div>
