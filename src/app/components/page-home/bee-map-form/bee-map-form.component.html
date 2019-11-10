@@ -1,4 +1,4 @@
-<mat-tab-group class="width-100">
+<mat-tab-group class="width-100 height-100" *ngIf="isLoggedIn">
   <mat-tab label="EDIT" class="width-100">
     <div
       class="width-100"
@@ -33,6 +33,7 @@
         fxLayoutAlign="start start"
         fxLayoutGap="10px"
       >
+        <br />
         Bee hive
         <br />
         <br />
@@ -63,5 +64,43 @@
       </div>
     </div>
   </mat-tab>
-  <mat-tab label="FILTER"> Content 2 </mat-tab>
+  <mat-tab label="FILTER">
+    <div
+      class="width-100"
+      fxLayout="column"
+      fxLayoutAlign="start start"
+      fxLayoutGap="10px"
+    >
+      Filter map by
+      <br />
+      <br />
+      <mat-slide-toggle
+        class="example-margin"
+        [color]="color"
+        [checked]="acaciaBool"
+        (change)="acaciaChange()"
+      >
+        Acacia
+      </mat-slide-toggle>
+      <mat-slide-toggle
+        class="example-margin"
+        [color]="color"
+        [checked]="lindenBool"
+        (change)="lindenChange()"
+      >
+        Linden
+      </mat-slide-toggle>
+      <mat-slide-toggle
+        class="example-margin"
+        [color]="color"
+        [checked]="appleBool"
+        (change)="appleChange()"
+      >
+        Apple
+      </mat-slide-toggle>
+    </div>
+  </mat-tab>
 </mat-tab-group>
+<div *ngIf="!isLoggedIn">
+  <h3>Log in or Sing Up to edit map</h3>
+</div>

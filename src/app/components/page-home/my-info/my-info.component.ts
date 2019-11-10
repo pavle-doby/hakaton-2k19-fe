@@ -6,6 +6,8 @@ import { State } from "src/app/store/store";
 import { PlotSelect, BeehiveSelect } from "src/app/store/actions";
 import { Observable } from "rxjs";
 import { MyToken } from "src/app/models/token";
+import { SocketService } from "src/app/services/socket.service";
+import { baseURL, baseSocketURL } from "src/assets/config";
 
 const StatusColorClasses = [
   "my-info--healthy",
@@ -29,10 +31,12 @@ export class MyInfoComponent implements OnInit {
 
   public $token: Observable<MyToken>;
   public isLoggedIn: boolean;
+  private nodeURL = ``;
 
   constructor(
     private myInfoService: MyInfoService,
-    private $store: Store<State>
+    private $store: Store<State>,
+    private io: SocketService
   ) {
     this.$token = this.$store.select(state => state.token);
     this.$myPlots = this.$store.select(state => state.myPlots);
@@ -43,6 +47,14 @@ export class MyInfoComponent implements OnInit {
   ngOnInit() {
     this.$token.subscribe(token => {
       this.isLoggedIn = !!token;
+      if (this.isLoggedIn) {
+        if (this.io.socket) {
+          // this.io.socket.send(JSON.stringify({ username: token.username }));
+          this.io.socket.onmessage = event => {
+            console.log("my-info-io:", event.data);
+          };
+        }
+      }
     });
     // this.myInfoService
     //   .getAllMyPlots()

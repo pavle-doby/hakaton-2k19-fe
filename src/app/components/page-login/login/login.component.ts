@@ -59,8 +59,6 @@ export class LoginComponent implements OnInit {
                 .getAllMyBeehives()
                 .toPromise()
                 .then(allMyBeehives => {
-                  console.log({ allMyBeehives });
-
                   if (allMyBeehives.length) {
                     this.store$.dispatch(new GetMyBeehives(allMyBeehives));
                   }

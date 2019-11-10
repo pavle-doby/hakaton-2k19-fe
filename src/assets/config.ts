@@ -8,6 +8,7 @@ import { HttpHeaders } from "@angular/common/http";
 // }
 
 export const baseURL = "http://94.228.235.191:8000/";
+export const baseSocketURL = "ws://94.228.235.191:8000/notifications/";
 
 export const httpOptions = {
   headers: new HttpHeaders({

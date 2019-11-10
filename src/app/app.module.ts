@@ -47,8 +47,9 @@ import { BeeMapFormComponent } from "./components/page-home/bee-map-form/bee-map
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MyInfoComponent } from "./components/page-home/my-info/my-info.component";
-import { BeeMapLegendComponent } from './components/page-home/bee-map-legend/bee-map-legend.component';
-import { FooterComponent } from './components/page-home/footer/footer.component';
+import { BeeMapLegendComponent } from "./components/page-home/bee-map-legend/bee-map-legend.component";
+import { FooterComponent } from "./components/page-home/footer/footer.component";
+import { MatDividerModule } from "@angular/material/divider";
 
 const MaterialComponents = [
   MatSlideToggleModule,
@@ -69,7 +70,8 @@ const MaterialComponents = [
   MatMenuModule,
   MatTreeModule,
   MatDialogModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatDividerModule
 ];
 
 @NgModule({
@@ -97,7 +99,7 @@ const MaterialComponents = [
   imports: [
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyDNOJOHPAaq0SyPL6aqSkPbk0VWPSti_L0",
-      libraries: ["places","drawing"]
+      libraries: ["places", "drawing"]
     }),
     StoreModule.forRoot(rootReducer),
     MaterialComponents,

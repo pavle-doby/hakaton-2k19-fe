@@ -39,7 +39,7 @@
           class="width-100"
           (click)="goToPlotOnMap(plot)"
         >
-          Name: {{ plot.name }}
+          Name: {{ plot?.name }}{{ plot?.pk }}
         </button>
         <br />
       </div>
@@ -60,7 +60,9 @@
           class="width-100"
           (click)="goToBeehivesOnMap(beehives)"
         >
-          Name: {{ beehives?.name }}({{ beehives?.hive_count }})
+          Name: {{ beehives?.name }}{{ beehives?.pk }} ({{
+            beehives?.hive_count
+          }})
         </button>
         <br />
       </div>
