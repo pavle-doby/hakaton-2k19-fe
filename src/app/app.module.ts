@@ -35,7 +35,6 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { DialogLogInComponent } from "./components/page-login/dialog-log-in/dialog-log-in.component";
 import { DialogSignInComponent } from "./components/page-login/dialog-sign-in/dialog-sign-in.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { StoreModule } from "@ngrx/store";
 import { rootReducer } from "./store/store";
 
