@@ -12,6 +12,7 @@ import myBeehivesReducer from "./reducers/myBeehives.reducer";
 import selectedBeehivesReducer from "./reducers/selectedBeehives.reducer";
 import myPlotsReducer from "./reducers/myPlots.reducer";
 import selectedPlotReducer from "./reducers/selectedPlot.reducer";
+import notificationsReducer from "./reducers/notifications.reducer";
 
 export interface State {
   user: User;
@@ -21,6 +22,7 @@ export interface State {
   selecetedBeehives: BeeHives;
   myPlots: IPlots[];
   selectedPlot: IPlots;
+  myNotifications: any[];
 }
 
 export const rootReducer: ActionReducerMap<any> = {
@@ -30,5 +32,6 @@ export const rootReducer: ActionReducerMap<any> = {
   myBeehives: myBeehivesReducer,
   selecetedBeehives: selectedBeehivesReducer,
   myPlots: myPlotsReducer,
-  selectedPlot: selectedPlotReducer
+  selectedPlot: selectedPlotReducer,
+  myNotifications: notificationsReducer
 };

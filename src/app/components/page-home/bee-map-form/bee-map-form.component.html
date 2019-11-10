@@ -1,12 +1,12 @@
 <mat-tab-group class="width-100 height-100" *ngIf="isLoggedIn">
-  <mat-tab label="EDIT" class="width-100">
+  <mat-tab label="EDIT" class=" width-100">
     <div
-      class="width-100"
+      class="from-content width-100"
       fxLayout="column"
       fxLayoutAlign="start start"
       fxLayoutGap="10px"
     >
-      <div class="width-100" fxLayout="column" fxLayoutAlign="start start">
+      <mat-card class="width-90" fxLayout="column" fxLayoutAlign="start start">
         Plot <small>pesticide-sprayed</small>
         <mat-form-field class="width-100">
           <input matInput placeholder="Plot id" [(ngModel)]="plot_id" />
@@ -26,9 +26,9 @@
         <button mat-raised-button color="primary" (click)="submitForPlot()">
           SUBMIT
         </button>
-      </div>
-      <div
-        class="width-100"
+      </mat-card>
+      <mat-card
+        class="width-90"
         fxLayout="column"
         fxLayoutAlign="start start"
         fxLayoutGap="10px"
@@ -61,43 +61,45 @@
         >
           Update bee hive by dragging it
         </mat-slide-toggle>
-      </div>
+      </mat-card>
     </div>
   </mat-tab>
-  <mat-tab label="FILTER">
-    <div
-      class="width-100"
-      fxLayout="column"
-      fxLayoutAlign="start start"
-      fxLayoutGap="10px"
-    >
-      Filter map by
-      <br />
-      <br />
-      <mat-slide-toggle
-        class="example-margin"
-        [color]="color"
-        [checked]="acaciaBool"
-        (change)="acaciaChange()"
+  <mat-tab label="FILTER" class="width-100">
+    <div class="width-100">
+      <mat-card
+        class="width-90"
+        fxLayout="column"
+        fxLayoutAlign="start start"
+        fxLayoutGap="10px"
       >
-        Acacia
-      </mat-slide-toggle>
-      <mat-slide-toggle
-        class="example-margin"
-        [color]="color"
-        [checked]="lindenBool"
-        (change)="lindenChange()"
-      >
-        Linden
-      </mat-slide-toggle>
-      <mat-slide-toggle
-        class="example-margin"
-        [color]="color"
-        [checked]="appleBool"
-        (change)="appleChange()"
-      >
-        Apple
-      </mat-slide-toggle>
+        Filter map by
+        <br />
+        <br />
+        <mat-slide-toggle
+          class="example-margin"
+          [color]="color"
+          [checked]="acaciaBool"
+          (change)="acaciaChange()"
+        >
+          Acacia
+        </mat-slide-toggle>
+        <mat-slide-toggle
+          class="example-margin"
+          [color]="color"
+          [checked]="lindenBool"
+          (change)="lindenChange()"
+        >
+          Linden
+        </mat-slide-toggle>
+        <mat-slide-toggle
+          class="example-margin"
+          [color]="color"
+          [checked]="appleBool"
+          (change)="appleChange()"
+        >
+          Apple
+        </mat-slide-toggle>
+      </mat-card>
     </div>
   </mat-tab>
 </mat-tab-group>
