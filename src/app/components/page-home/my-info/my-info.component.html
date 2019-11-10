@@ -1,4 +1,4 @@
-<mat-tab-group class="width-100">
+<mat-tab-group *ngIf="isLoggedIn" class="width-100">
   <mat-tab label="NOTIFICATIONS">
     <div
       class="width-100"
@@ -8,7 +8,7 @@
     >
       <button
         mat-raised-button
-        *ngFor="let notification of myNotifications"
+        *ngFor="let notification of $myNotifications | async"
         class="width-100 not-font-color"
         [ngClass]="{
           'my-info--danger': notification.status === 2,
@@ -23,7 +23,7 @@
     </div>
   </mat-tab>
   <mat-tab label="MY PROPERTY" class="card-body">
-    <div *ngIf="myPlots.length" class="width-100">
+    <div class="width-100">
       Plots
       <br />
       <br />
@@ -35,7 +35,7 @@
       >
         <button
           mat-raised-button
-          *ngFor="let plot of myPlots"
+          *ngFor="let plot of $myPlots | async"
           class="width-100"
           (click)="goToPlotOnMap(plot)"
         >
@@ -44,7 +44,7 @@
         <br />
       </div>
     </div>
-    <div *ngIf="myBeehives.length" class="width-100">
+    <div class="width-100">
       Beehives
       <br />
       <br />
@@ -56,14 +56,17 @@
       >
         <button
           mat-raised-button
-          *ngFor="let beehives of myBeehives"
+          *ngFor="let beehives of $myBeehives | async"
           class="width-100"
           (click)="goToBeehivesOnMap(beehives)"
         >
-          Name: {{ beehives.name }}({{ beehives.count }})
+          Name: {{ beehives?.name }}({{ beehives?.hive_count }})
         </button>
         <br />
       </div>
     </div>
   </mat-tab>
 </mat-tab-group>
+<div *ngIf="!isLoggedIn">
+  <h3>Log in to see your info :D</h3>
+</div>

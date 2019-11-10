@@ -10,50 +10,16 @@ export class MyInfoService {
   constructor(private http: HttpClient) {}
 
   public getAllMyPlots(): Observable<any[]> {
-    const url = `${baseURL}user_plots/`;
-    // return this.http.get<any[]>(url, httpOptions);
-    return of([
-      { name: "plot1" },
-      { name: "plot2" },
-      { name: "plot3" },
-      { name: "plot4" },
-      { name: "plot5" }
-    ]);
+    const url = `${baseURL}plots/user_plots/`;
+    return this.http.get<any[]>(url, httpOptions);
   }
   public getAllMyBeehives(): Observable<any[]> {
-    const url = `${baseURL}user_beehives/`;
+    const url = `${baseURL}beehives/user/`;
 
-    // return this.http.get<any[]>(url, httpOptions);
-    return of([
-      {
-        point: null,
-        name: "name00",
-        count: 99
-      },
-      {
-        point: null,
-        name: "name01",
-        count: 3
-      },
-      {
-        point: null,
-        name: "name02",
-        count: 24
-      },
-      {
-        point: null,
-        name: "name03",
-        count: 27
-      },
-      {
-        point: null,
-        name: "name04",
-        count: 6
-      }
-    ]);
+    return this.http.get<any[]>(url, httpOptions);
   }
   public getAllMyNotifications(): Observable<any[]> {
-    const url = `${baseURL}user_notifications/`;
+    const url = `${baseURL}notifications/`;
     // return this.http.get<any[]>(url, httpOptions);
     return of([
       {
