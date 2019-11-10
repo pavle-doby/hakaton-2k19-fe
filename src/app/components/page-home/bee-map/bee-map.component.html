@@ -7,6 +7,7 @@
       [iconUrl]="beeIcon" [latitude]="bee.coordinate.lat" [longitude]="bee.coordinate.lng"
       [markerDraggable]="updateBeeHiveLocation"
       (dragEnd)="markerDragEnd($event,bee)"
+      (markerClick)="markerClicked(bee)"
       ></agm-marker>
   </div>
   <div *ngFor="let dz of zones">

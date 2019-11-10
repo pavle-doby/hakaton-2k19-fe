@@ -4,6 +4,7 @@ import {BeeHives} from '../models/beeHives';
 import { baseURL, httpOptions } from "src/assets/config";
 import { HttpClient } from "@angular/common/http";
 import {Observable} from 'rxjs';
+import { share } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +24,10 @@ export class BeemapService {
   public getAllBeeHives(regionCoordinates:any): Observable<any[]>{
     const querryParams = `?ul_lat=${regionCoordinates.na.l}&ul_lon=${regionCoordinates.ga.j}&br_lat=${regionCoordinates.na.j}&br_lon=${regionCoordinates.ga.l}`;
     const url = `${baseURL}beehives${querryParams}`;
-    return this.http.get<any[]>(url,httpOptions);
+    return this.http.get<any[]>(url,httpOptions).pipe(share());
   }
 
-  public addBeeHive(beeHive:any): Observable<any[]>{
+  public addBeeHive(beeHive:any): Observable<number>{
     // this.hive.coordinate={lat:37,lng:37};
     // this.hive.count = 1;
     // this.hive.name= "omegalul";
@@ -34,11 +35,16 @@ export class BeemapService {
     const url = `${baseURL}beehives/`;
     //return this.http.post<any>(url,{point:"SRID=4326;POINT (21.8875343 43.3358099)",hive_count:1,name:"omegalul"},httpOptions);
     //beeHive
+    console.log(beeHive);
     return this.http.post<any>(url,beeHive,httpOptions);
   }
   public updateBeeHive(beeHive:any):Observable<any[]>{
     const url = `${baseURL}beehives/${beeHive.pk}`;
-    return this.http.get<any[]>(url,httpOptions);
+    return this.http.patch<any[]>(url,httpOptions);
+  }
+  public deleteBeeHive(beeHive:any):Observable<any[]>{
+    const url = `${baseURL}beehives/${beeHive.pk}`;
+    return this.http.delete<any[]>(url,httpOptions);
   }
 
   public getAllDangerZones(regionCoordinates:any){
