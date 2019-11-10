@@ -64,31 +64,46 @@ onMapReady(map) {
     console.log(map.getBounds());
     that.mapBounds = map.getBounds();
     that.getAllBeeHives(map.getBounds());
-    that.beeMapService.getAllDangerZones(map.getBounds()).subscribe(res=>{
-      //console.log(res);
-    });
+    that.getAllDangerZones(map.getBounds());
+    // that.beeMapService.getAllDangerZones(map.getBounds()).subscribe(res=>{
+    //   console.log(res);
+    // });
     
  });
   this.drawingManager = new google.maps.drawing.DrawingManager();
 }
 getAllBeeHives(box:any){
   this.beeMapService.getAllBeeHives(box).subscribe(res=>{
-    //console.log(res);
     let temp = [...res];
     this.beeHives = [];
-    //this.beeHives = [...res];
     temp.forEach(bee=>{
       this.beeHives.push({pk:bee.pk,coordinate:{lat: bee.latitude, lng:bee.longitude},name: bee.name,count:bee.hive_count})
     })
+    
     console.log(this.beeHives);
   })
 }
+getAllDangerZones(box:any){
+  this.beeMapService.getAllDangerZones(box).subscribe(res=>{
+    console.log(res);
+    let temp = [...res];
+    this.zones = [];
+    temp.forEach(zone=>{
+      this.zones.push({pk:zone.pk,upperLeftPoint:{lat:zone.upper_left_latitude,lng:zone.upper_left_longitude},bottomRightPoint:{lat:zone.bottom_right_latitude,lng:zone.bottom_right_longitude},dateTimeEnd:null,dateTimeStart:null})
+    })
+   console.log(this.zones);
+    
+  })
 
-addBeeHive(){
+}
+
+addBeeHive(lat:number,lng:number){
   let beeHive = {};
   const last = this.beeHives.length-1;
-  beeHive = {point:`SRID=4326;POINT (${this.beeHives[last].coordinate.lat} ${this.beeHives[last].coordinate.lng})`,hive_count:this.beeHives[last].count,name:"omegalul"};
-  this.beeMapService.addBeeHive(beeHive).subscribe(res=>console.log(res));
+  beeHive = {point:`SRID=4326;POINT (${lng} ${lat})`,hive_count:1,name:"lale"};
+  this.beeMapService.addBeeHive(beeHive).subscribe(res=>{ 
+      this.beeHives.push({pk:res,coordinate:{lat:lat,lng:lng},name:"",count:1});
+  });
 }
 markerDragEnd($event: any,bee:BeeHives){
     let beeToUpdate;
@@ -98,72 +113,26 @@ markerDragEnd($event: any,bee:BeeHives){
       console.log(res);
     })
 }
-updateBee(){
 
-}
 onChange(value: MatSlideToggleChange) {
-  //const { checked } = value;
   this.checked = value.checked;
-  //this.getAllBeeHives();
-  
   console.log(this.checked);
 }
-
-addMarker(lat: number, lng: number) {
-  //pitas ovde da li je u selektovanoj formi izabrana pcela ili parcela 
-  //za sada pretpostavljam da je selektovana pcela 
-  //opali post request kada se ovo zavrsi 
-  //if form.pcele === true onda ovo
-  
-  // console.log(this.drawingManager);
-  // if(this.drawingManager.getMap()){
-  //   this.drawingManager.setMap(null);
-  //   console.log(this.drawingManager);
-  // }
-  if(!this.checked){
-    this.location.markers.push({
-      pk:111,
-      coordinate:{lat:lat,lng:lng},
-      name:"",
-      count:1
+markerClicked(bee:any){
+  this.beeHives.splice(this.beeHives.indexOf(bee),1);
+  this.beeMapService.deleteBeeHive(bee).subscribe(res=>{
+    
   })
-  this.beeHives.push({
-    pk:222,
-    coordinate:{lat:lat,lng:lng},
-    name:"",
-    count:1
-})
-  //drawingManager.setMap(options);
-  console.log(this.beeHives);
-  this.addBeeHive();
-  }
-  // if(this.checked){
-  //   console.log(this.map);
-  //   const options = {
-  //     drawingControl: true,
-  //     drawingControlOptions : {
-  //       position : google.maps.ControlPosition.TOP_CENTER,
-  //       drawingModes : [ google.maps.drawing.OverlayType.RECTANGLE ]
-  //   },
-  //   rectangleOptions : {
-  //       // strokeColor : this.zoneColor,
-  //       // strokeWeight : 3.5,
-  //       fillColor : this.zoneColor,
-  //       fillOpacity : 0.5,
-  //       editable: true,
-  //       draggable: true
-  //   }, 
-  //     drawingMode: google.maps.drawing.OverlayType.RECTANGLE
-  //   };
+}
+addMarker(lat: number, lng: number) {
+  if(!this.checked){
 
-  //   this.drawingManager = new google.maps.drawing.DrawingManager(options);
-  //   this.drawingManager.setMap(this.map);
-  // }
-  
-  // else return;
-  
-  //else postavlja se parcela
-  //parcela se postavlja na drag
+  console.log(this.beeHives);
+  //this.beeHives.push({pk:null,coordinate:{lat:lat,lng:lng},name:"",count:1});
+  let latt = lat;
+  let lngg = lng;
+  this.addBeeHive(latt,lngg);
+  }
 }
 
 }
