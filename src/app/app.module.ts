@@ -68,7 +68,8 @@ const MaterialComponents = [
   MatGridListModule,
   MatMenuModule,
   MatTreeModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSlideToggleModule
 ];
 
 @NgModule({
@@ -96,7 +97,7 @@ const MaterialComponents = [
   imports: [
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyDNOJOHPAaq0SyPL6aqSkPbk0VWPSti_L0",
-      libraries: ["places"]
+      libraries: ["places","drawing"]
     }),
     StoreModule.forRoot(rootReducer),
     MaterialComponents,
