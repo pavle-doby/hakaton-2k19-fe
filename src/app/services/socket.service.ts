@@ -14,7 +14,8 @@ export class SocketService {
   public socket: WebSocket;
 
   constructor() {
-    this.socket = new WebSocket(baseSocketURL);
+    // TODO: CHANGE FIXED ADMIN
+    this.socket = new WebSocket(baseSocketURL + "admin?username=admin");
     console.log("Connect!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
   }
 }

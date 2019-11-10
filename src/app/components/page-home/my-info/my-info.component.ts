@@ -41,7 +41,7 @@ export class MyInfoComponent implements OnInit {
     this.$token = this.$store.select(state => state.token);
     this.$myPlots = this.$store.select(state => state.myPlots);
     this.$myBeehives = this.$store.select(state => state.myBeehives);
-    // this.$myNotifications = this.$store.select(state => state.myNotifications);
+    this.$myNotifications = this.$store.select(state => state.myNotifications);
   }
 
   ngOnInit() {

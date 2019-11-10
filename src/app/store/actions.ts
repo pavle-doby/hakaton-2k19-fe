@@ -60,3 +60,9 @@ export class GetMyPlots implements Action {
   type: string = GET_MY_PLOTS;
   constructor(public plots: IPlots[]) {}
 }
+
+export const GET_MY_NOTIFI = "GET_MY_NOTIFI";
+export class GetMyNotifi implements Action {
+  type: string = GET_MY_NOTIFI;
+  constructor(public notifi: any[]) {}
+}

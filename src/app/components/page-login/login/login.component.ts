@@ -9,7 +9,8 @@ import { setTokenInHttpClientHeaders } from "src/assets/config";
 import {
   UserLogInSuccess,
   GetMyPlots,
-  GetMyBeehives
+  GetMyBeehives,
+  GetMyNotifi
 } from "src/app/store/actions";
 import { Router } from "@angular/router";
 import { MyInfoService } from "src/app/services/my-info.service";
@@ -61,6 +62,18 @@ export class LoginComponent implements OnInit {
                 .then(allMyBeehives => {
                   if (allMyBeehives.length) {
                     this.store$.dispatch(new GetMyBeehives(allMyBeehives));
+                  }
+                })
+                .catch(err => {
+                  console.log({ err });
+                });
+
+              this.myInfoService
+                .getAllMyNotifications()
+                .toPromise()
+                .then(notifi => {
+                  if (notifi.length) {
+                    this.store$.dispatch(new GetMyNotifi(notifi));
                   }
                 })
                 .catch(err => {

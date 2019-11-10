@@ -1,71 +1,78 @@
-<mat-tab-group *ngIf="isLoggedIn" class="width-100">
-  <mat-tab label="NOTIFICATIONS">
-    <div
-      class="width-100"
-      fxLayout="column"
-      fxLayoutAlign="start center"
-      fxLayoutGap="10px"
-    >
-      <button
-        mat-raised-button
-        *ngFor="let notification of $myNotifications | async"
-        class="width-100 not-font-color"
-        [ngClass]="{
-          'my-info--danger': notification.status === 2,
-          'my-info--warning': notification.status === 1,
-          'my-info--healthy': notification.status === 0
-        }"
+<mat-tab-group *ngIf="true" class="width-100">
+  <mat-tab label="NOTIFICATIONS" class="width-100">
+    <div class="width-100">
+      <mat-card
+        class="width-90"
+        fxLayout="column"
+        fxLayoutAlign="start center"
+        fxLayoutGap="10px"
       >
-        Name: {{ notification?.beehives.name }} ({{
-          notification?.beehives.count
-        }})
-      </button>
+        <button
+          mat-raised-button
+          color="primary"
+          *ngFor="let notification of $myNotifications | async"
+          class="width-100 not-font-color"
+          [ngClass]="{
+            'my-info--danger': notification?.status === 1,
+            'my-info--warning': notification?.status === 0
+          }"
+        >
+          {{ notification.text }}
+        </button>
+      </mat-card>
     </div>
   </mat-tab>
-  <mat-tab label="MY PROPERTY" class="card-body">
+  <mat-tab label="MY PROPERTY" class="card-body width-100">
     <div class="width-100">
-      Plots
-      <br />
-      <br />
-      <div
-        class="width-100"
-        fxLayout="column"
-        fxLayoutAlign="start center"
-        fxLayoutGap="10px"
-      >
-        <button
-          mat-raised-button
-          *ngFor="let plot of $myPlots | async"
-          class="width-100"
-          (click)="goToPlotOnMap(plot)"
-        >
-          Name: {{ plot?.name }}{{ plot?.pk }}
-        </button>
+      <mat-card class="width-80">
+        Plots
         <br />
-      </div>
+        <br />
+        <div
+          class="width-100"
+          fxLayout="column"
+          fxLayoutAlign="start center"
+          fxLayoutGap="10px"
+        >
+          <button
+            color="primary"
+            mat-raised-button
+            color="primary"
+            *ngFor="let plot of $myPlots | async"
+            class="width-100"
+            (click)="goToPlotOnMap(plot)"
+          >
+            Name: {{ plot?.name }}{{ plot?.pk }}
+          </button>
+          <br />
+        </div>
+      </mat-card>
     </div>
     <div class="width-100">
-      Beehives
-      <br />
-      <br />
-      <div
-        class="width-100"
-        fxLayout="column"
-        fxLayoutAlign="start center"
-        fxLayoutGap="10px"
-      >
-        <button
-          mat-raised-button
-          *ngFor="let beehives of $myBeehives | async"
-          class="width-100"
-          (click)="goToBeehivesOnMap(beehives)"
-        >
-          Name: {{ beehives?.name }}{{ beehives?.pk }} ({{
-            beehives?.hive_count
-          }})
-        </button>
+      <mat-card class="width-80">
+        Beehives
         <br />
-      </div>
+        <br />
+        <div
+          class="width-100"
+          fxLayout="column"
+          fxLayoutAlign="start center"
+          fxLayoutGap="10px"
+        >
+          <button
+            color="primary"
+            mat-raised-button
+            *ngFor="let beehives of $myBeehives | async"
+            class="width-100"
+            (click)="goToBeehivesOnMap(beehives)"
+          >
+            Name: {{ beehives?.name }}{{ beehives?.pk }} ({{
+              beehives?.hive_count
+            }})
+          </button>
+          <br />
+        </div>
+      </mat-card>
     </div>
   </mat-tab>
 </mat-tab-group>
