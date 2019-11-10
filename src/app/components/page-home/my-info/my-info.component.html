@@ -13,8 +13,8 @@
           *ngFor="let notification of $myNotifications | async"
           class="width-100 not-font-color"
           [ngClass]="{
-            'my-info--danger': notification?.status === 1,
-            'my-info--warning': notification?.status === 0
+            'my-info--danger': notification?.status === 0,
+            'my-info--warning': notification?.status === 1
           }"
         >
           {{ notification.text }}
