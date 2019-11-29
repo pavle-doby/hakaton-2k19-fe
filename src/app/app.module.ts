@@ -54,6 +54,8 @@ import { SmBottomBarComponent } from "./components/page-home/sm-bottom-bar/sm-bo
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { SmExpansionPanelComponent } from './components/page-home/sm-bottom-bar/sm-expansion-panel/sm-expansion-panel.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const MaterialComponents = [
   MatExpansionModule,
@@ -119,7 +121,8 @@ const MaterialComponents = [
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],
