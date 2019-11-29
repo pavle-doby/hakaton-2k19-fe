@@ -5,7 +5,6 @@ import { Action } from "@ngrx/store";
 export default function(state: BeeHives[] = [], action: Action) {
   switch (action.type) {
     case GET_MY_BEEHIVES: {
-      console.log(action.type);
       const beehives = (action as GetMyBeehives).Beehives;
 
       return [...(state = beehives)];

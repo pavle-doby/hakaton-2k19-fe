@@ -16,6 +16,5 @@ export class SocketService {
   constructor() {
     // TODO: CHANGE FIXED ADMIN
     this.socket = new WebSocket(baseSocketURL + "admin");
-    console.log("Connect!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
   }
 }

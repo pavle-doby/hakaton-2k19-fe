@@ -1,4 +1,3 @@
-<p>{{ title }}</p>
 <agm-map [latitude]="location.latitude" [longitude]="location.longitude" [zoom]="location.zoom"
 (mapReady)="onMapReady($event)" 
 (mapClick)="beehivesActionsStatus.addBool ? addMarker($event.coords.lat, $event.coords.lng):null">

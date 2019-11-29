@@ -51,7 +51,7 @@ export class MyInfoComponent implements OnInit {
         if (this.io.socket) {
           // this.io.socket.send(JSON.stringify({ username: token.username }));
           this.io.socket.onmessage = event => {
-            console.log("my-info-io:", event.data);
+            // console.log("my-info-io:", event.data);
           };
         }
       }
@@ -93,12 +93,12 @@ export class MyInfoComponent implements OnInit {
   }
 
   goToPlotOnMap(plot) {
-    console.log("goToPlotOnMap", plot);
+    // console.log("goToPlotOnMap", plot);
     this.$store.dispatch(new PlotSelect(plot));
   }
 
   goToBeehivesOnMap(beehives) {
-    console.log("goToBeehivesOnMap", beehives);
+    // console.log("goToBeehivesOnMap", beehives);
     this.$store.dispatch(new BeehiveSelect(beehives));
   }
 }

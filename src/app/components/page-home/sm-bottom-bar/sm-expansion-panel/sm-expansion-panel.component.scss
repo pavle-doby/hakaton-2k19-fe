@@ -1,0 +1,23 @@
+@import "./../../../../../styles.scss";
+
+.sm-expansion-panel--small-input {
+  width: 45%;
+  margin: 5px;
+}
+
+.sm-expansion-panel--gps-subimt {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.bk-c {
+  background-color: $color-yellow;
+  color: black !important;
+}

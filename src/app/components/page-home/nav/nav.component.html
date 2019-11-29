@@ -1,14 +1,14 @@
 <div
   class="bee-nav"
   fxLayout="row"
-  fxLayoutAlign="space-between center"
+  fxLayoutAlign="space-around center"
   fxLayoutGap="10px"
 >
   <label>
     <img
       src="./../../../../assets/icons/bee.svg"
       alt="bee"
-      style="width: 36xp; height: 36px; margin-left:70px;"
+      style="width: 36xp; height: 36px;"
     />
   </label>
   <div
@@ -16,16 +16,13 @@
     fxLayout="row"
     fxLayoutAlign="center center"
     fxLayoutGap="10px"
-    style="margin-right:40px;"
   >
     <app-login></app-login>
     <app-signin></app-signin>
   </div>
-  <div *ngIf="isLoggedIn"
-  style="margin-right:40px;">
-  <h4 style="margin-right:70px;">
+  <div *ngIf="isLoggedIn">
+    <h4>
       BeeResponsible
-  </h4>
-    
+    </h4>
   </div>
 </div>

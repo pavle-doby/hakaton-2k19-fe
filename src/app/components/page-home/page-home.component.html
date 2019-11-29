@@ -3,18 +3,31 @@
   fxLayout="column"
   fxLayoutAlign="start center"
   fxLayoutGap="30px"
+  fxLayoutGap.lt-md="10px"
 >
   <app-nav class="width-100"></app-nav>
 
   <div class="width-100" fxLayout="row" fxLayoutAlign="space-evenly start">
-    <app-bee-map-form fxFlex="20"></app-bee-map-form>
+    <app-bee-map-form class="sm-hide" fxFlex="20"></app-bee-map-form>
 
-    <div fxLayout="column" fxLayoutAlign="space-evenly start" fxFlex="40">
-      <app-bee-map-legend class="width-100"></app-bee-map-legend>
-      <app-bee-map class="width-100"></app-bee-map>
+    <div
+      class="width-100"
+      fxLayout="column"
+      fxLayoutAlign="space-evenly start"
+      fxFlex="40"
+      fxFlex.lt-md
+      fxLayoutGap="10px"
+      fxLayoutGap.lt-md="0"
+    >
+      <app-bee-map-legend class="width-100" fxFlex.sm></app-bee-map-legend>
+      <app-bee-map class="width-100" fxFlex.sm></app-bee-map>
+      <app-sm-bottom-bar
+        class="sm-show width-100"
+        fxFlex.sm
+      ></app-sm-bottom-bar>
     </div>
 
-    <app-my-info fxFlex="20"></app-my-info>
+    <app-my-info class="sm-hide" fxFlex="20"></app-my-info>
   </div>
   <div fxFlex></div>
 

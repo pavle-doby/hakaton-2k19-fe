@@ -33,7 +33,7 @@ export class BeemapService {
   }
 
   public addBeeHive(beeHive:any): Observable<number>{
-    console.log(this.hive);
+    // console.log(this.hive);
     const url = `${baseURL}beehives/`;
     return this.http.post<any>(url,beeHive,httpOptions);
   }

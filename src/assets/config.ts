@@ -1,13 +1,6 @@
 import { HttpHeaders } from "@angular/common/http";
 
-// export function setTokenInHttpClientHeaders(
-//   headers: HttpHeaders,
-//   token: string
-// ) {
-//   return headers.set("Authorization", `Bearer ${token}`);
-// }
-
-export const baseURL = "http://94.228.235.191:8000/";
+export const baseURL = "http://178.17.27.199:8000/";
 export const baseSocketURL = "ws://94.228.235.191:8000/notifications/";
 
 export const httpOptions = {

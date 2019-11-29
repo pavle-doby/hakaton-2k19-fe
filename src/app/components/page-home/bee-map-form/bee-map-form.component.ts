@@ -54,7 +54,7 @@ export class BeeMapFormComponent implements OnInit {
     this.selectedPesticide = pesticide;
   }
   submitForPlot() {
-    console.log("submitForPlot", this.plot_id, this.selectedPesticide);
+    // console.log("submitForPlot", this.plot_id, this.selectedPesticide);
 
     if (!this.plot_id || !this.selectedPesticide) {
       return;
@@ -67,7 +67,7 @@ export class BeeMapFormComponent implements OnInit {
       })
     );
     this.io.socket.onmessage = event => {
-      console.log("bee-map-io", event.data);
+      // console.log("bee-map-io", event.data);
     };
   }
   appleChange() {

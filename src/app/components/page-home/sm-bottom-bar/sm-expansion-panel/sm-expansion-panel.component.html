@@ -1,0 +1,120 @@
+<mat-accordion class="widht-100">
+  <!-- Beehive - start -->
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Beehive
+      </mat-panel-title>
+      <mat-panel-description>
+        Add, Update, Delete
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div fxLayout="row wrap">
+      <mat-slide-toggle
+        class="example-margin"
+        [color]="color"
+        [checked]="addBeeHiveBool"
+        (change)="addBeeHive()"
+      >
+        Add by click on map
+      </mat-slide-toggle>
+      <mat-slide-toggle
+        class="example-margin"
+        [color]="color"
+        [checked]="deleteBeeHiveBool"
+        (change)="deleteBeeHive()"
+      >
+        Delete by click on beehive
+      </mat-slide-toggle>
+      <mat-slide-toggle
+        class="example-margin"
+        [color]="color"
+        [checked]="updateBeeHiveBool"
+        (change)="updateBeeHive()"
+      >
+        Update bee hive by dragging it
+      </mat-slide-toggle>
+    </div>
+  </mat-expansion-panel>
+  <!-- Beehive - end -->
+
+  <!-- GPS - start -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        GPS
+      </mat-panel-title>
+      <mat-panel-description>
+        Locate pesticide-sprayed zone
+        <!-- Lociraj prskanu zonu preko GPS-a -->
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field class="sm-expansion-panel--small-input float-left">
+      <input matInput type="number" placeholder="Widht" />
+    </mat-form-field>
+    <mat-form-field class="sm-expansion-panel--small-input float-right">
+      <input matInput type="number" placeholder="Height" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Pesticides</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let pesticide of pesticides" [value]="pesticide">
+          {{ pesticide }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      class="sm-expansion-panel--gps-subimt"
+      color="primary"
+      (click)="send()"
+    >
+      Submit
+    </button>
+  </mat-expansion-panel>
+  <!-- GPS - end -->
+
+  <!-- Plot ID - start -->
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Plot ID
+      </mat-panel-title>
+      <mat-panel-description>
+        Enter Plot ID and Area
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field class="sm-expansion-panel--small-input float-left">
+      <input matInput placeholder="Plot ID" />
+    </mat-form-field>
+    <mat-form-field class="sm-expansion-panel--small-input float-right">
+      <input matInput placeholder="Area" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Pesticides</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let pesticide of pesticides" [value]="pesticide">
+          {{ pesticide }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      class="sm-expansion-panel--gps-subimt"
+      color="primary"
+      (click)="send()"
+    >
+      Submit
+    </button>
+  </mat-expansion-panel>
+  <!-- Plot ID - end -->
+</mat-accordion>

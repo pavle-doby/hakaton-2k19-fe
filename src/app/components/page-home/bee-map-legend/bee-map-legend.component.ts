@@ -15,10 +15,10 @@ export class BeeMapLegendComponent implements OnInit {
       classColor: "bee-map-legend--color-warning",
       info: "This area was once dangerous for bees or it will be soon"
     },
-    {
-      classColor: "bee-map-legend--color-healthy",
-      info: "This area is healthy for bees"
-    }
+    // {
+    //   classColor: "bee-map-legend--color-healthy",
+    //   info: "This area is healthy for bees"
+    // }
   ];
   constructor() {}
 

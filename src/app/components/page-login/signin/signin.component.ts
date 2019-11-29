@@ -63,7 +63,7 @@ export class SigninComponent implements OnInit {
                     .getAllMyBeehives()
                     .toPromise()
                     .then(allMyBeehives => {
-                      console.log({ allMyBeehives });
+                      // console.log({ allMyBeehives });
 
                       if (allMyBeehives.length) {
                         this.store$.dispatch(new GetMyBeehives(allMyBeehives));

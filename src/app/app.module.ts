@@ -50,8 +50,14 @@ import { MyInfoComponent } from "./components/page-home/my-info/my-info.componen
 import { BeeMapLegendComponent } from "./components/page-home/bee-map-legend/bee-map-legend.component";
 import { FooterComponent } from "./components/page-home/footer/footer.component";
 import { MatDividerModule } from "@angular/material/divider";
+import { SmBottomBarComponent } from "./components/page-home/sm-bottom-bar/sm-bottom-bar.component";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { SmExpansionPanelComponent } from './components/page-home/sm-bottom-bar/sm-expansion-panel/sm-expansion-panel.component';
 
 const MaterialComponents = [
+  MatExpansionModule,
+  MatTooltipModule,
   MatSlideToggleModule,
   MatToolbarModule,
   MatTabsModule,
@@ -94,7 +100,9 @@ const MaterialComponents = [
     BeeMapFormComponent,
     MyInfoComponent,
     BeeMapLegendComponent,
-    FooterComponent
+    FooterComponent,
+    SmBottomBarComponent,
+    SmExpansionPanelComponent,
   ],
   imports: [
     AgmCoreModule.forRoot({
